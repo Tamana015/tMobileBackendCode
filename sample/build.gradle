@@ -1,0 +1,43 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.18'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'java'
+}
+
+group = 'com.experiment'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+configurations.all {
+    exclude group: 'org.slf4j', module: 'slf4j-simple'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth:3.1.4'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    runtimeOnly 'mysql:mysql-connector-java:8.0.32' // Specify the version here
+    implementation 'com.google.code.gson:gson:2.9.1'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    implementation group: 'joda-time', name: 'joda-time', version: '2.9.5'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.14'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+}
+
+test {
+    useJUnitPlatform()
+}

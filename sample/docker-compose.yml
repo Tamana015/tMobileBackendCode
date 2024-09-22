@@ -1,0 +1,28 @@
+services:
+  app:
+    build:
+      context: .
+    image: your-spring-boot-image:latest
+    container_name: app
+    ports:
+      - "7091:7091"  # Map host port 7080 to container port 7080
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/sampleDatabase
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  db:
+    image: mysql:latest
+    container_name: mysql1
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sampleDatabase
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
